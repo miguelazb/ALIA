@@ -1,9 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/rosa"
+    android:orientation="vertical"
     tools:context=".registerActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/muffin"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:textSize="28sp"
+        android:text="Registro"
+        android:textColor="@color/gris_oscuro"
+
+        />
+
+    <EditText
+        android:id="@+id/register_nombre"
+        android:layout_width="250dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="45dp"
+        android:textSize="24sp"
+        android:background="@drawable/round_edit_text"
+        android:hint="Nombre"
+        android:textColor="@color/gris_oscuro"
+        android:gravity="center"
+        android:layout_gravity="center"
+        />
+    <EditText
+        android:id="@+id/register_edad"
+        android:layout_width="250dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="18dp"
+        android:textSize="24sp"
+        android:background="@drawable/round_edit_text"
+        android:hint="Edad"
+        android:textColor="@color/gris_oscuro"
+        android:gravity="center"
+        android:layout_gravity="center"
+        />
+    <EditText
+        android:id="@+id/register_carrera"
+        android:layout_width="250dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="18dp"
+        android:textSize="24sp"
+        android:background="@drawable/round_edit_text"
+        android:hint="Carrera"
+        android:textColor="@color/gris_oscuro"
+        android:gravity="center"
+        android:layout_gravity="center"
+        />
+    <EditText
+        android:id="@+id/register_valores"
+        android:layout_width="250dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="18dp"
+        android:textSize="24sp"
+        android:background="@drawable/round_edit_text"
+        android:hint="Valores"
+        android:textColor="@color/gris_oscuro"
+        android:gravity="center"
+        android:layout_gravity="center"
+        />
+    <Button
+        android:id="@+id/btn_listo"
+        android:layout_width="150dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/round_ok_button"
+        android:textColor="@color/rosa"
+        android:text="Listo"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:textSize="24sp"
+        />
+
+</LinearLayout>

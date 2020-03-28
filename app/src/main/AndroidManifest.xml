@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".MenuViaje"></activity>
+=======
+        <activity android:name=".asdasd"></activity>
+        <activity android:name=".registerActivity" />
+>>>>>>> c20e38a14de4f61c9642ec48fc23974d8081bfe7
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
