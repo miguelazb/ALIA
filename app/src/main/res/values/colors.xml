@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="rosa">#f1cfd0</color>
-    <color name="blanco">#f8ecec</color>
-    <color name="azul">#00225a</color>
-    <color name="gris">#5e5e5e</color>
-    <color name="gris_claro">#828483</color>
-    <color name="rojo">#e25c5d</color>
-    <color name="amarillo">#f6bc2c</color>
-    <color name="verde">#269960</color>
+    <color name="colorPrimary">#e9ced0</color>
+    <color name="colorPrimaryDark">#e9ced0</color>
+    <color name="colorAccent">#e9ced0</color>
+    <color name="rosa">#e9ced0</color>
+    <color name="blanco">#f7ecec</color>
+    <color name="azul">#032157</color>
+    <color name="gris_oscuro">#5c5c5c</color>
+    <color name="gris_claro">#828282</color>
+    <color name="rojo">#c85b5d</color>
+    <color name="amarillo">#e8ba3b</color>
+    <color name="verde">#5b9861</color>
 </resources>
