@@ -4,105 +4,129 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_perfil_conductora"
-    tools:context=".PerfilConductoraActivity">
+    android:background="@drawable/fondo_ayuda_viaje"
+    tools:context=".MiPerfilActivity">
 
+    <!-- Imagen Perfil -->
+    <ImageView
+        android:id="@+id/imgViewFoto"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/logo_alia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+    <!-- Nombre Perfil -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Mi Perfil"
+        android:textColor="@color/gris_oscuro"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgViewFoto" />
+
+    <!-- Calificacion Usuario -->
+    <RatingBar
+        android:id="@+id/ratingBarCalificacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <!-- Nombre Usuario -->
+    <TextView
+        android:id="@+id/txtViewNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Dennis Arce"
+        android:textColor="@color/azul"
+        android:textSize="26sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarCalificacion" />
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/icon_perfil"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_gravity="center"
-            android:textSize="28sp"
-            android:text="Perfil de conductora"
-            android:textColor="@color/gris_oscuro"
-            />
+    <!-- Edad Usuario -->
+    <TextView
+        android:id="@+id/txtViewEdad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="24 años"
+        android:textColor="@color/gris_claro"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewNombre" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:src="@drawable/foto_perfil_conductora"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
+    <!-- Carrera Usuario -->
+    <TextView
+        android:id="@+id/txtViewCarrera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Lic. Diseño Gráfico ITSON"
+        android:textColor="@color/gris_claro"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewEdad" />
 
-                <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ratingBar"
-                    style="?android:attr/ratingBarStyleIndicator"
-                    android:scaleX="0.75"
-                    android:scaleY="0.75"
-                    android:max="5"/>
+    <!-- Valores usuarios -->
+    <TextView
+        android:id="@+id/txtViewValores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Amigable, Honesta, Respetuosa"
+        android:textColor="@color/gris_claro"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewCarrera" />
 
-                <TextView
-                    android:id="@+id/perfil_nombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:textSize="26sp"
-                    android:text="Carolina"
-                    android:textColor="@color/azul"
-                    />
-                <TextView
-                    android:id="@+id/perfil_edad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="22 años"
-                    android:textColor="@color/gris_oscuro"
-                    />
-                <TextView
-                    android:id="@+id/perfil_carrera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="Lic. Contaduría ITSON"
-                    android:textColor="@color/gris_oscuro"
-                    />
-                <TextView
-                    android:id="@+id/perfil_valores"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="Responsable, amigable"
-                    android:textColor="@color/gris_oscuro"
-                    />
+    <!-- Titulo Rutas Frecuentes -->
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="Rutas Frecuentes"
+        android:textAllCaps="true"
+        android:textColor="@color/azul"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewValores" />
 
-            </LinearLayout>
+    <!-- Lista Rutas -->
+    <ListView
+        android:id="@+id/listaRutasFrecuentes"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-
-        </LinearLayout>
-
-
-
-
-
-    </LinearLayout>
-
+    <!-- Menu -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -208,6 +232,7 @@
 
 
     <!-- GuideLines -->
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
@@ -215,6 +240,10 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.90" />
 
-
-
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
 </androidx.constraintlayout.widget.ConstraintLayout>

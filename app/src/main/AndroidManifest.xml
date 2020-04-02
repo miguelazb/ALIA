@@ -1,40 +1,27 @@
-<<<<<<< Original<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="zamorano.miguel.alia">
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="zamorano.miguel.alia">
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MiPerfilActivity"></activity>
+        <activity android:name=".MenuViajeActivity" />
+        <activity android:name=".BusStation"></activity>
+        <activity android:name=".PerfilConductoraActivity"></activity>
+        <activity android:name=".LogInActivity" > </activity>
+        <activity android:name=".registerActivity" />
+        <activity android:name=".ViajeResume" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<application
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme">
-    <
-    <
-    <
-    <
-    <
-    <
-    < HEAD
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 
-    <activity android:name=".BusStation"></activity>
-    =======
-    <activity android:name=".PerfilConductoraActivity"></activity>
-    <activity android:name=".LogInActivity" />
-    >>>>>>> 8ce96599f03cfab10f0b8f5a4c4b8a423edc59e2
-    <activity android:name=".MenuViaje" />
-    <activity android:name=".registerActivity" />
-    <activity android:name=".MainActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-</application>
-
-</manifest>=======<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-<application>
-    <activity android:name="zamorano.miguel.alia.ViajeResume"></activity>
-</application>
-</manifest>>>>>>>> Added
+</manifest>
