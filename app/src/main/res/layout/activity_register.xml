@@ -23,7 +23,6 @@
         android:textSize="28sp"
         android:text="Registro"
         android:textColor="@color/gris_oscuro"
-
         />
 
     <EditText

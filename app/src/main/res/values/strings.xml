@@ -6,4 +6,5 @@
     <string name="ruta1_busStation">Línea 5 calle Zaragoza 611</string>
     <string name="ruta2_busStation">Central camionera calle Hidalgo 200</string>
     <string name="ruta3_busStation">Línea 8 calle Guerrero 1030</string>
+    <string name="txt_viaje">Carolina está en camino...</string>
 </resources>
