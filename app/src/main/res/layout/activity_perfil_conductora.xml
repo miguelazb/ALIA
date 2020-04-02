@@ -11,11 +11,95 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="25dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <!-- COLOCAR CÓDIGO AQUÍ -->
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/icon_perfil"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_gravity="center"
+            android:textSize="28sp"
+            android:text="Perfil de conductora"
+            android:textColor="@color/gris_oscuro"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:src="@drawable/foto_perfil_conductora"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ratingBar"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:scaleX="0.75"
+                    android:scaleY="0.75"
+                    android:max="5"/>
+
+                <TextView
+                    android:id="@+id/perfil_nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:textSize="26sp"
+                    android:text="Carolina"
+                    android:textColor="@color/azul"
+                    />
+                <TextView
+                    android:id="@+id/perfil_edad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="22 años"
+                    android:textColor="@color/gris_oscuro"
+                    />
+                <TextView
+                    android:id="@+id/perfil_carrera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="Lic. Contaduría ITSON"
+                    android:textColor="@color/gris_oscuro"
+                    />
+                <TextView
+                    android:id="@+id/perfil_valores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="Responsable, amigable"
+                    android:textColor="@color/gris_oscuro"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
 
     </LinearLayout>
 
