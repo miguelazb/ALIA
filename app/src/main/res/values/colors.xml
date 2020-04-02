@@ -3,7 +3,9 @@
     <color name="colorPrimary">#e9ced0</color>
     <color name="colorPrimaryDark">#e9ced0</color>
     <color name="colorAccent">#e9ced0</color>
+    <color name="rosaFondo">#FEEAE9</color>
     <color name="rosa">#e9ced0</color>
+    <color name="rosaFuerte">#EEC3C2</color>
     <color name="blanco">#f7ecec</color>
     <color name="azul">#032157</color>
     <color name="gris_oscuro">#5c5c5c</color>

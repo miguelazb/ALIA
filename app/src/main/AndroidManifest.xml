@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".BusStation"></activity>
+=======
+        <activity android:name=".PerfilConductoraActivity"></activity>
+        <activity android:name=".LogInActivity" />
+>>>>>>> 8ce96599f03cfab10f0b8f5a4c4b8a423edc59e2
         <activity android:name=".MenuViaje" />
         <activity android:name=".registerActivity" />
         <activity android:name=".MainActivity">
