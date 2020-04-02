@@ -3,7 +3,7 @@ package zamorano.miguel.alia
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class MenuViaje : AppCompatActivity() {
+class MenuViajeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
