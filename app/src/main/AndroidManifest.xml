@@ -9,8 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".MiPerfilActivity"></activity>
         <activity android:name=".MenuViajeActivity" />
+=======
+<<<<<<< HEAD
+        <activity android:name=".BusStation"></activity>
+=======
+        <activity android:name=".PerfilConductoraActivity"></activity>
+        <activity android:name=".LogInActivity" />
+>>>>>>> 8ce96599f03cfab10f0b8f5a4c4b8a423edc59e2
+        <activity android:name=".MenuViaje" />
+>>>>>>> 80fe9abcafd7b8226425f13b150088ef7b2cae7b
         <activity android:name=".registerActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
