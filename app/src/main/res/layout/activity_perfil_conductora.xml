@@ -97,9 +97,81 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="22sp"
+            android:layout_gravity="center"
+            android:text="RUTAS DE LA CONDUCTORA"
+            android:textColor="@color/azul"
+            />
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/rosa"
+            android:layout_gravity="center">
 
+            <EditText
+                android:layout_width="310dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:text="@string/editText_busStation"
+                android:paddingLeft="15dp"
+                android:background="@drawable/round_edit_text_busstation"/>
 
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/icon_parada"/>
+
+            <Button
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:text="@string/ruta1_busStation"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/gris_claro"
+                android:background=""/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/icon_parada"/>
+
+            <Button
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:text="@string/ruta2_busStation"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/gris_claro"
+                android:background=""/>
+        </LinearLayout>
 
     </LinearLayout>
 
