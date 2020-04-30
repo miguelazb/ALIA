@@ -60,7 +60,7 @@
         android:textSize="20sp"
         android:textAllCaps="false"
         android:textColor="@color/gris_oscuro"
-        android:background=""
+        android:background="@android:color/transparent"
         android:stateListAnimator="@null"
         android:text="¿Has olvidado tu contraseña?"
         />

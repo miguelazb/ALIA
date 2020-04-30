@@ -146,7 +146,7 @@
                 android:textSize="18sp"
                 android:textAlignment="textStart"
                 android:textColor="@color/gris_claro"
-                android:background=""/>
+                android:background="@android:color/transparent"/>
         </LinearLayout>
 
         <LinearLayout
@@ -170,7 +170,7 @@
                 android:textSize="18sp"
                 android:textAlignment="textStart"
                 android:textColor="@color/gris_claro"
-                android:background=""/>
+                android:background="@android:color/transparent"/>
         </LinearLayout>
 
     </LinearLayout>
