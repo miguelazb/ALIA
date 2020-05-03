@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "719812016528",
+    "firebase_url": "https://alia-drive.firebaseio.com",
+    "project_id": "alia-drive",
+    "storage_bucket": "alia-drive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719812016528:android:f86b5b5191b9771134db15",
+        "android_client_info": {
+          "package_name": "zamorano.miguel.alia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719812016528-39vpqibpiihinl6hi850qt6sgfmbeg2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCllmRyPDx7rX5raJUI3TN6t0-nDYZ245k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719812016528-39vpqibpiihinl6hi850qt6sgfmbeg2s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

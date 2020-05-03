@@ -9,21 +9,24 @@ import android.os.Handler;
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val boton: Button = findViewById(R.id.btn_registrar);
+        val btnRegistro: Button = findViewById(R.id.btn_registro)
+        val btnInicio: Button = findViewById(R.id.btn_iniciar)
 
-        val handler = Handler()
-        handler.postDelayed({
-            val intent: Intent = Intent(this,registerActivity::class.java);
+        btnRegistro.setOnClickListener {
+            val intent: Intent = Intent(this, registerActivity::class.java);
             startActivity(intent);
-        }, 3000)
+        }
 
-        boton.setOnClickListener({
-            val intent: Intent = Intent(this,registerActivity::class.java);
+        btnInicio.setOnClickListener {
+            val intent: Intent = Intent(this, LogInActivity::class.java);
             startActivity(intent);
-        });
+        }
+
+
     }
 
 }
