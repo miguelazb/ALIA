@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "719812016528-6b5nfmbi881v3ha02dqq6dhpsnemhgmr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "zamorano.miguel.alia",
+            "certificate_hash": "3174fa2fe5263a9b6df888d5d1dc00d750e9e5e2"
+          }
+        },
+        {
           "client_id": "719812016528-39vpqibpiihinl6hi850qt6sgfmbeg2s.apps.googleusercontent.com",
           "client_type": 3
         }

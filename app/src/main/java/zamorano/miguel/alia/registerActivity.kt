@@ -2,15 +2,17 @@ package zamorano.miguel.alia
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_register.*
+import java.lang.Exception
 
 
 class registerActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +21,7 @@ class registerActivity : AppCompatActivity() {
         // Setup
         setup()
     }
+
     private fun setup() {
         btn_listo.setOnClickListener {
             if (register_nombre.text.isNotEmpty()
@@ -33,17 +36,17 @@ class registerActivity : AppCompatActivity() {
                     if (it.isSuccessful) {
                         showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
                     } else {
-                        showAlert()
+                        showAlert(it.exception?.message.toString())
                     }
                 }
             }
         }
     }
 
-    private fun showAlert() {
+    private fun showAlert(exception: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
-        builder.setMessage("Se ha producido un error registrando al usuario")
+        builder.setMessage(exception)
         builder.setPositiveButton("Acepter", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
@@ -56,4 +59,5 @@ class registerActivity : AppCompatActivity() {
         }
         startActivity(menuViajeIntent)
     }
+
 }
