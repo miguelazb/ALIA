@@ -5,18 +5,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_register.*
-import java.lang.Exception
+import kotlinx.android.synthetic.main.activity_auth.*
 
 
-class registerActivity : AppCompatActivity() {
+class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_auth)
 
         // Setup
         setup()
@@ -24,8 +20,7 @@ class registerActivity : AppCompatActivity() {
 
     private fun setup() {
         btn_listo.setOnClickListener {
-            if (register_nombre.text.isNotEmpty()
-                && register_correo.text.isNotEmpty()
+            if (register_correo.text.isNotEmpty()
                 && register_contra.text.isNotEmpty()
             ) {
 
@@ -53,7 +48,7 @@ class registerActivity : AppCompatActivity() {
     }
 
     private fun showHome(email: String, provider: ProviderType) {
-        val menuViajeIntent: Intent = Intent(this, MenuViajeActivity::class.java).apply {
+        val menuViajeIntent: Intent = Intent(this, RegisterActivity::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
         }

@@ -7,4 +7,31 @@
     <string name="ruta2_busStation">Central camionera calle Hidalgo 200</string>
     <string name="ruta3_busStation">Línea 8 calle Guerrero 1030</string>
     <string name="txt_viaje">Carolina está en camino...</string>
+
+    <string-array name="majors_array">
+        <item>Carrera que estudia</item>
+        <item>Lic. Administración</item>
+        <item>Lic. Administración Empresas</item>
+        <item>Lic. Arquitectura</item>
+        <item>Lic. Ciencias de la Educación</item>
+        <item>Lic. en Ciencias del Ejercicio Físico</item>
+        <item>Lic. en Contaduría Pública</item>
+        <item>Lic. en Diseño Gráfico</item>
+        <item>Lic. en Economía y Finanzas</item>
+        <item>Lic. en Educación Infantil</item>
+        <item>Lic. en Gestión y Desarrollo de las Artes</item>
+        <item>Lic. en Psicología</item>
+        <item>Lic. en Tecnología de Alimentos</item>
+        <item>Médico Veterinario Zootecnista</item>
+        <item>Ing. en Biosistemas</item>
+        <item>Ing. en Biotecnología</item>
+        <item>Ing. en Ciencias Ambientales</item>
+        <item>Ing. Civil</item>
+        <item>Ing. Electromecánica</item>
+        <item>Ing. Industrial y de Sistemas</item>
+        <item>Ing. en Manufactura</item>
+        <item>Ing. en Mecatrónica</item>
+        <item>Ing. Química</item>
+        <item>Ing. en Software</item>
+    </string-array>
 </resources>

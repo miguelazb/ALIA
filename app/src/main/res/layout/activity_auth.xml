@@ -16,7 +16,6 @@
         android:layout_marginTop="50dp"
         android:src="@drawable/icon_corazon"/>
     <TextView
-        android:id="@+id/titulo_reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -27,82 +26,39 @@
         />
 
     <EditText
-        android:id="@+id/register_nombre"
+        android:id="@+id/register_correo"
         android:layout_width="250dp"
         android:layout_height="38dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="55dp"
         android:textSize="20sp"
         android:background="@drawable/round_edit_text"
-        android:hint="Nombre"
+        android:hint="Correo electrónico"
         android:textColor="@color/gris_oscuro"
         android:gravity="center"
         android:layout_gravity="center"
         />
     <EditText
-        android:id="@+id/register_edad"
+        android:id="@+id/register_contra"
         android:layout_width="250dp"
         android:layout_height="38dp"
         android:layout_marginTop="13dp"
         android:textSize="20sp"
         android:background="@drawable/round_edit_text"
-        android:hint="Edad"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
         android:textColor="@color/gris_oscuro"
         android:gravity="center"
         android:layout_gravity="center"
         />
-    <!--<EditText
-        android:id="@+id/register_carrera"
-        android:layout_width="250dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="13dp"
-        android:textSize="20sp"
-        android:background="@drawable/round_edit_text"
-        android:hint="Carrera"
-        android:textColor="@color/gris_oscuro"
-        android:gravity="center"
-        android:layout_gravity="center"
-        />-->
-
-    <EditText
-        android:id="@+id/register_valores"
-        android:layout_width="250dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="13dp"
-        android:textSize="20sp"
-        android:background="@drawable/round_edit_text"
-        android:hint="Valores"
-        android:textColor="@color/gris_oscuro"
-        android:gravity="center"
-        android:layout_gravity="center"
-        />
-
-    <Spinner
-        android:id="@+id/majors_spinner"
-        android:layout_width="250dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="18dp"
-
-        android:layout_gravity="center"/>
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:text="Soy conductora"
-        android:buttonTint="@color/gris_oscuro"
-        android:textColor="@color/gris_claro"
-        android:textSize="20dp"/>
-
 
     <Button
         android:id="@+id/btn_listo"
         android:layout_width="150dp"
         android:layout_height="32dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="35dp"
         android:background="@drawable/round_ok_button"
         android:textColor="@color/rosa"
-        android:text="Listo"
+        android:text="Siguiente"
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:textSize="20sp"
