@@ -18,28 +18,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline">
 
-        <ImageView
-            android:id="@+id/ayudaImageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/icon_sos"
-            app:layout_constraintBottom_toTopOf="@+id/ayudaTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/ayudaTextView"
+        <LinearLayout
+            android:id="@+id/btnPantallaAyuda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Ayuda"
-            android:textAllCaps="true"
-            android:textColor="@color/gris_oscuro"
-            android:textSize="24sp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/icon_sos"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Ayuda"
+                android:textSize="24sp"
+                android:textAllCaps="true"
+                android:textAlignment="center"
+                android:textColor="@color/gris_oscuro"/>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -52,28 +55,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2">
 
-        <ImageView
-            android:id="@+id/viajeImageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/icon_viaje"
-            app:layout_constraintBottom_toTopOf="@+id/viajeTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/viajeTextView"
+        <LinearLayout
+            android:id="@+id/btnPantallaViaje"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Viaje"
-            android:textAllCaps="true"
-            android:textColor="@color/gris_oscuro"
-            android:textSize="24sp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/icon_viaje" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Viaje"
+                android:textSize="24sp"
+                android:textAllCaps="true"
+                android:textAlignment="center"
+                android:textColor="@color/gris_oscuro"/>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -118,6 +124,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/btnMenuPerfil"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/icon_perfil"
@@ -211,7 +218,5 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.90" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

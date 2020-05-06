@@ -31,7 +31,7 @@
         android:layout_width="250dp"
         android:layout_height="36dp"
         android:layout_marginTop="24dp"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:background="@drawable/round_edit_text"
         android:hint="Correo electrónico"
         android:textColor="@color/gris_oscuro"
@@ -44,7 +44,7 @@
         android:layout_width="250dp"
         android:layout_height="36dp"
         android:layout_marginTop="16dp"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:background="@drawable/round_edit_text"
         android:hint="Contraseña"
         android:inputType="textPassword"
@@ -76,7 +76,7 @@
         android:text="Entrar"
         android:textAllCaps="false"
         android:layout_gravity="center"
-        android:textSize="24sp"
+        android:textSize="18sp"
         />
 
 </LinearLayout>

@@ -25,17 +25,17 @@ class LogInActivity : AppCompatActivity() {
                     if (it.isSuccessful) {
                         showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
                     } else {
-                        showAlert()
+                        showAlert(it.exception?.message.toString())
                     }
                 }
             }
         }
     }
 
-    private fun showAlert() {
+    private fun showAlert(exception: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
-        builder.setMessage("Se ha producido un error iniciando sesión")
+        builder.setMessage(exception)
         builder.setPositiveButton("Acepter", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
