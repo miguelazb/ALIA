@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -32,13 +33,20 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
         btn_listo.setOnClickListener {
             saveOnDatabase()
-            showMenu()
         }
 
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) { TODO("Not yet implemented") }
 
+    /**
+     * Método onItemSelected iguala la variable register_carrera al valor seleccionado
+     * en el Spinner del activity.
+     * @param parent parent del spinner.
+     * @param view vista del spinner.
+     * @param position posición del elemento seleccionado
+     * @param id id del spinner.
+     */
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         register_carrera = if(position != 0) {
             parent?.getItemAtPosition(position).toString()
@@ -69,8 +77,8 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
     }
 
     /**
-     * Método que crea el Spinner através del arreglo de carreras creado en el
-     * resource de Strings.
+     * El método SpinnerDeclarations crea un ArrayAdapter usando el arreglo de Strings
+     * en el drawable de Strings para crear el Spinner con las diferentes opciones.
      */
     private fun spinnerDeclarations() {
         val spinner: Spinner = findViewById(R.id.majors_spinner)
@@ -90,28 +98,62 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
     }
 
     /**
-     * Método encargado de guardar el usuario en la base de datos validando que
-     * no haya ni un solo campo vacío.
+     * Método saveOnDatabase crea un usuario nuevo, obtiene el uid del usuario
+     * que se encuentra registrando y lo guarda en Firebase.
      */
     private fun saveOnDatabase() {
-        val usuario = User(
-            register_nombre.text.toString(),
-            register_edad.text.toString(),
-            register_carrera,
-            register_valores.text.toString()
-        )
+        val nombre = register_nombre.text
+        val edad = register_edad.text
+        val valores = register_valores.text
+        val esConductora = esConductora.isChecked
 
-        val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
-        usuarioUID = currentFirebaseUser!!.uid
+        if(nombre.isNotEmpty() && edad.isNotEmpty() && valores.isNotEmpty()) {
+            // Se crea un usuario con los valores obtenidos a lo largo
+            // del activity.
+            val usuario = User(
+                nombre.toString(),
+                edad.toString(),
+                register_carrera,
+                valores.toString(),
+                esConductora,
+                puntuacion = 0.0F
+            )
 
-        FirebaseDatabase.getInstance().reference
-            .child("users")
-            .child(usuarioUID)
-            .setValue(usuario)
+            // Aquí se obtiene el UID del usuario que se registró en el AuthActivity
+            // Para así ligar sus datos a Firebase.
+            val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+            usuarioUID = currentFirebaseUser!!.uid
+
+            // Se guarda al usuario en la base de datos de Firebase
+            FirebaseDatabase.getInstance().reference
+                .child("users")
+                .child(usuarioUID)
+                .setValue(usuario)
+
+            showMenu()
+
+        } else {
+            showAlert()
+        }
+
     }
 
     /**
-     * Intent a la siguiente pantalla de MenuViaje
+     * Método ShowAlert construirá y mostrará un error en caso que existan
+     * campos vacíos.
+     */
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("No se permiten campos vacíos.")
+        builder.setPositiveButton("Acepter", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+    /**
+     * ShowMenu se encarga de hacer un intent a la pantalla de MenuViaje, esto en caso
+     * que no existan errores.
      */
     private fun showMenu() {
         val menuViajeIntent: Intent = Intent(this, MenuViajeActivity::class.java)

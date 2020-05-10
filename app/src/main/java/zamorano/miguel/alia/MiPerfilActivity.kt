@@ -16,7 +16,7 @@ class MiPerfilActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mi_perfil)
-
+        ratingBarCalificacion.rating = 5.0F
         obtenDatosUsuario()
     }
 
