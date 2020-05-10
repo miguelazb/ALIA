@@ -1,6 +1,7 @@
 package zamorano.miguel.alia
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -13,10 +14,16 @@ class MiPerfilActivity : AppCompatActivity() {
     var database = FirebaseDatabase.getInstance().reference
     lateinit var usuarioUID: String
 
+
+    var edad: Int = 0
+    var nombre: String = ""
+    var carrera: String = ""
+    var valores: String = ""
+    var esConductora: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mi_perfil)
-        ratingBarCalificacion.rating = 5.0F
         obtenDatosUsuario()
     }
 
@@ -37,6 +44,13 @@ class MiPerfilActivity : AppCompatActivity() {
                         txtViewEdad.text = "${map["edad"].toString()} años"
                         txtViewCarrera.text = map["carrera"].toString()
                         txtViewValores.text = map["valores"].toString()
+                        ratingBarCalificacion.rating = map["puntuacion"].toString().toFloat()
+
+                        if(map["conductor"] == false) {
+                            verifiedUser.visibility = View.GONE
+                        } else {
+                            verifiedUser.visibility = View.VISIBLE
+                        }
                     }
 
                 })

@@ -61,6 +61,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBarCalificacion" />
 
+    <ImageView
+        android:id="@+id/verifiedUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_verified_user_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtViewNombre"
+        app:layout_constraintStart_toEndOf="@+id/txtViewNombre"
+        app:layout_constraintTop_toTopOf="@+id/txtViewNombre" />
+
     <!-- Edad Usuario -->
     <TextView
         android:id="@+id/txtViewEdad"
