@@ -2,33 +2,44 @@ package zamorano.miguel.alia
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_elige_conductor.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 
 class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
-    lateinit var register_carrera: String
-    lateinit var usuarioUID: String
-    val REQUEST_IMAGE_CAPTURE = 1
+    lateinit var carrera: String
+    lateinit var storageRef: StorageReference
+    lateinit var downloadUri: Uri
+
+    companion object {
+        private val PICK_IMAGE_CODE = 1000
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        storageRef = FirebaseStorage.getInstance().getReference("image_upload")
 
         spinnerDeclarations()
 
         userImage.setOnClickListener {
-            dispatchTakePictureIntent()
-            onActivityResult(0, 0, null)
+            launchGallery()
         }
 
         btn_listo.setOnClickListener {
@@ -37,64 +48,41 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) { TODO("Not yet implemented") }
-
     /**
-     * Método onItemSelected iguala la variable register_carrera al valor seleccionado
-     * en el Spinner del activity.
-     * @param parent parent del spinner.
-     * @param view vista del spinner.
-     * @param position posición del elemento seleccionado
-     * @param id id del spinner.
+     * launchGallery abre la galeria de imagenes en la cual se podrá seleccionar una imagen
+     * y se le asignará al usuario.
      */
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        register_carrera = if(position != 0) {
-            parent?.getItemAtPosition(position).toString()
-        } else {
-            parent?.getItemAtPosition(1).toString()
-        }
+    private fun launchGallery() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_CODE)
     }
 
     /**
-     * Método utilizado para obtener la imágen tomada en la cámara
+     * onActivityResult obtendrá la imágen seleccionada del método launchGallery
+     * y la subirá a Firebase para obtener un uri, el cual será agregado al usuario
+     * cuando este se suba a la base de datos.
      */
     override fun onActivityResult(requestCode:Int, resultCode:Int, data:Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            userImage.setImageBitmap(imageBitmap)
-        }
-    }
-
-    /**
-     * Método utilizado para abrir la camara y poder tomar fotos.
-     */
-    private fun dispatchTakePictureIntent() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            takePictureIntent.resolveActivity(packageManager)?.also {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == PICK_IMAGE_CODE) {
+            val uploadTask = storageRef.putFile(data!!.data!!)
+            val task = uploadTask.continueWithTask {
+                task ->
+                if(!task.isSuccessful) {
+                    Toast.makeText(this, "Imágen no se subió", Toast.LENGTH_LONG).show()
+                }
+                storageRef.downloadUrl
+            }.addOnCompleteListener {
+                task ->
+                if(task.isSuccessful) {
+                    downloadUri = task.result!!
+                    Picasso.get().load(downloadUri).into(userImage);
+                    Toast.makeText(this, "Imágen se subió con éxito", Toast.LENGTH_LONG).show()
+                }
             }
         }
-    }
-
-    /**
-     * El método SpinnerDeclarations crea un ArrayAdapter usando el arreglo de Strings
-     * en el drawable de Strings para crear el Spinner con las diferentes opciones.
-     */
-    private fun spinnerDeclarations() {
-        val spinner: Spinner = findViewById(R.id.majors_spinner)
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.majors_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            spinner.adapter = adapter
-        }
-        spinner.onItemSelectedListener = this
     }
 
     /**
@@ -113,21 +101,21 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             val usuario = User(
                 nombre.toString(),
                 edad.toString(),
-                register_carrera,
+                carrera,
                 valores.toString(),
                 esConductora,
+                downloadUri.toString(),
                 puntuacion = 0.0F
             )
 
             // Aquí se obtiene el UID del usuario que se registró en el AuthActivity
             // Para así ligar sus datos a Firebase.
             val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
-            usuarioUID = currentFirebaseUser!!.uid
 
             // Se guarda al usuario en la base de datos de Firebase
             FirebaseDatabase.getInstance().reference
                 .child("users")
-                .child(usuarioUID)
+                .child(currentFirebaseUser!!.uid)
                 .setValue(usuario)
 
             showMenu()
@@ -159,4 +147,43 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         val menuViajeIntent: Intent = Intent(this, MenuViajeActivity::class.java)
         startActivity(menuViajeIntent)
     }
+
+    /**
+     * El método SpinnerDeclarations crea un ArrayAdapter usando el arreglo de Strings
+     * en el drawable de Strings para crear el Spinner con las diferentes opciones.
+     */
+    private fun spinnerDeclarations() {
+        val spinner: Spinner = findViewById(R.id.majors_spinner)
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.majors_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = adapter
+        }
+        spinner.onItemSelectedListener = this
+    }
+
+    /**
+     * Método onItemSelected iguala la variable carrera al valor seleccionado
+     * en el Spinner del activity.
+     * @param parent parent del spinner.
+     * @param view vista del spinner.
+     * @param position posición del elemento seleccionado
+     * @param id id del spinner.
+     */
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        carrera = if(position != 0) {
+            parent?.getItemAtPosition(position).toString()
+        } else {
+            parent?.getItemAtPosition(1).toString()
+        }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) { TODO("Not yet implemented") }
 }

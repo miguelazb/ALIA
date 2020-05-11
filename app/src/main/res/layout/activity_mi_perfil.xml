@@ -8,7 +8,7 @@
     tools:context=".MiPerfilActivity">
 
     <!-- Imagen Perfil -->
-    <ImageView
+    <!--<ImageView
         android:id="@+id/imgViewFoto"
         android:layout_width="120dp"
         android:layout_height="120dp"
@@ -16,7 +16,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline10" />
+        app:layout_constraintTop_toTopOf="@+id/guideline10" /> -->
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgViewFoto"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:padding="0dp"
+        android:src="@drawable/logo_alia"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline10"/>
 
     <!-- Nombre Perfil -->
     <TextView
@@ -112,34 +125,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtViewCarrera" />
 
-    <!-- Titulo Rutas Frecuentes -->
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clRutasFrecuentes"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:text="Rutas Frecuentes"
-        android:textAllCaps="true"
-        android:textColor="@color/azul"
-        android:textSize="26sp"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewValores" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewValores">
 
-    <!-- Lista Rutas -->
-    <ListView
-        android:id="@+id/listaRutasFrecuentes"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        <!-- Titulo Rutas Frecuentes -->
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rutas Frecuentes"
+            android:textAllCaps="true"
+            android:textColor="@color/azul"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Lista Rutas -->
+        <ListView
+            android:id="@+id/listaRutasFrecuentes"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <!-- Menu -->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

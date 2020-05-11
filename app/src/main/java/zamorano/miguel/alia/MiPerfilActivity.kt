@@ -3,12 +3,15 @@ package zamorano.miguel.alia
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_mi_perfil.*
+import kotlinx.android.synthetic.main.activity_register.*
 
 class MiPerfilActivity : AppCompatActivity() {
     var database = FirebaseDatabase.getInstance().reference
@@ -39,17 +42,21 @@ class MiPerfilActivity : AppCompatActivity() {
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
-                        var map = p0.value as Map<String, Any>
+                        var map = p0.value as Map<*, *>
                         txtViewNombre.text = map["nombre"].toString()
                         txtViewEdad.text = "${map["edad"].toString()} años"
                         txtViewCarrera.text = map["carrera"].toString()
                         txtViewValores.text = map["valores"].toString()
                         ratingBarCalificacion.rating = map["puntuacion"].toString().toFloat()
 
+                        Picasso.get().load(map["url"].toString().toUri()).into(imgViewFoto);
+
                         if(map["conductor"] == false) {
                             verifiedUser.visibility = View.GONE
+                            clRutasFrecuentes.visibility = View.GONE
                         } else {
                             verifiedUser.visibility = View.VISIBLE
+                            clRutasFrecuentes.visibility = View.VISIBLE
                         }
                     }
 
