@@ -113,7 +113,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/btnMenuAutobus"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/icon_ubicacion"

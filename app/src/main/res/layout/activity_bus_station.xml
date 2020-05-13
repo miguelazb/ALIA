@@ -7,152 +7,82 @@
     android:background="@drawable/fondo_ayuda_viaje"
     tools:context=".BusStation">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/icon_ubicacion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/icon_ubicacion"/>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/title_busStation"
+        android:textColor="@color/gris_oscuro"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:textSize="28sp"
-            android:text="@string/title_busStation"
-            android:textColor="@color/gris_oscuro"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:textSize="30sp"
-            android:text="@string/txt_saludo_busStation"
-            android:textColor="@color/azul"/>
-
-        <LinearLayout
-            android:layout_width="330dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/rosa"
-            android:layout_gravity="center">
-
-            <EditText
-                android:layout_width="310dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:text="@string/editText_busStation"
-                android:paddingLeft="15dp"
-                android:background="@drawable/round_edit_text_busstation"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="5dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/icon_parada"/>
-
-            <Button
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:text="@string/ruta1_busStation"
-                android:textSize="18sp"
-                android:textAlignment="textStart"
-                android:textColor="@color/gris_claro"
-                android:background="@android:color/transparent"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="330dp"
-            android:layout_height="1dp"
-            android:background="@color/gris_claro"
-            android:layout_gravity="center"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/icon_parada"/>
-
-            <Button
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:text="@string/ruta2_busStation"
-                android:textSize="18sp"
-                android:textAlignment="textStart"
-                android:textColor="@color/gris_claro"
-                android:background="@android:color/transparent"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="330dp"
-            android:layout_height="1dp"
-            android:background="@color/gris_claro"
-            android:layout_gravity="center"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/icon_parada"/>
-
-            <Button
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:text="@string/ruta3_busStation"
-                android:textSize="18sp"
-                android:textAlignment="textStart"
-                android:textColor="@color/gris_claro"
-                android:background="@android:color/transparent"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="330dp"
-            android:layout_height="1dp"
-            android:background="@color/gris_claro"
-            android:layout_gravity="center"/>
-
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textViewNombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/txt_saludo_busStation"
+        android:textColor="@color/azul"
+        android:textSize="26sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/rosa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNombre">
+
+        <EditText
+            android:layout_width="310dp"
+            android:layout_height="30dp"
+            android:background="@drawable/round_edit_text_busstation"
+            android:paddingLeft="10dp"
+            android:text="@string/editText_busStation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ListView
+        android:id="@+id/listaRutasFrecuentes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
@@ -181,10 +111,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/autobusBtnMenu"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/icon_ubicacion"
+            android:src="@drawable/icon_ubicacion_seleccion"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintHorizontal_bias="0.526"
@@ -192,6 +122,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/btnMenuPerfil"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/icon_perfil"

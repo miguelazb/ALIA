@@ -3,6 +3,7 @@
     package="zamorano.miguel.alia">
 
     <uses-feature android:name="android.hardware.camera2" android:required="true" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
