@@ -1,11 +1,8 @@
 package zamorano.miguel.alia
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -18,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_elige_conductor.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 
@@ -96,8 +92,12 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         val esConductora = esConductora.isChecked
 
         if(nombre.isNotEmpty() && edad.isNotEmpty() && valores.isNotEmpty()) {
-            // Se crea un usuario con los valores obtenidos a lo largo
-            // del activity.
+            /**
+             * Se crea un usuario con los valores obtenidos a lo largo
+             * del activity.
+             * Se agrega un campo vacio a rutas para que el campo sea reconocido al momento
+             * de agregar rutas
+             */
             val usuario = User(
                 nombre.toString(),
                 edad.toString(),
@@ -105,7 +105,8 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
                 valores.toString(),
                 esConductora,
                 downloadUri.toString(),
-                puntuacion = 0.0F
+                puntuacion = 0.0F,
+                rutas = arrayListOf("")
             )
 
             // Aquí se obtiene el UID del usuario que se registró en el AuthActivity

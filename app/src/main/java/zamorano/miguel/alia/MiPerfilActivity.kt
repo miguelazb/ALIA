@@ -1,21 +1,17 @@
 package zamorano.miguel.alia
 
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.type.ColorOrBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_mi_perfil.*
-import kotlinx.android.synthetic.main.activity_register.*
 
 class MiPerfilActivity : AppCompatActivity() {
     var database = FirebaseDatabase.getInstance().reference
@@ -23,12 +19,6 @@ class MiPerfilActivity : AppCompatActivity() {
 
     var listaRutas = ArrayList<ListaRutasConductor>()
     lateinit var adaptador: RutasAdapter
-
-    var edad: Int = 0
-    var nombre: String = ""
-    var carrera: String = ""
-    var valores: String = ""
-    var esConductora: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +35,12 @@ class MiPerfilActivity : AppCompatActivity() {
         // Si se clickea el boton de bus menu
         btnAutoBusMenu.setOnClickListener {
             val intent: Intent = Intent(this, BusStation::class.java)
+            startActivity(intent)
+        }
+
+        // Si se clickea el boton de agregar rutas
+        btnAddRoutes.setOnClickListener {
+            val intent: Intent = Intent(this, AgregarRutas::class.java)
             startActivity(intent)
         }
     }
@@ -74,9 +70,11 @@ class MiPerfilActivity : AppCompatActivity() {
 
                         if(map["conductor"] == false) {
                             verifiedUser.visibility = View.GONE
+                            btnAddRoutes.visibility = View.GONE
                             clRutasFrecuentes.visibility = View.GONE
                         } else {
                             verifiedUser.visibility = View.VISIBLE
+                            btnAddRoutes.visibility = View.VISIBLE
                             clRutasFrecuentes.visibility = View.VISIBLE
                         }
                         val uri: Uri = Uri.parse(map["url"].toString())

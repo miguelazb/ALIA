@@ -34,4 +34,22 @@
         <item>Ing. Química</item>
         <item>Ing. en Software</item>
     </string-array>
+
+    <string-array name="bus_array">
+        <item>Linea que utiliza</item>
+        <item>Linea 1</item>
+        <item>Linea 2</item>
+        <item>Linea 3</item>
+        <item>Linea 4</item>
+        <item>Linea 5</item>
+        <item>Linea 6</item>
+        <item>Linea 7</item>
+        <item>Linea 8</item>
+        <item>Linea 9</item>
+        <item>Linea 10</item>
+        <item>Linea 11</item>
+        <item>Linea 13</item>
+        <item>Linea 14</item>
+        <item>Linea 15</item>
+    </string-array>
 </resources>

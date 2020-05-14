@@ -8,6 +8,7 @@ class User(val nombre: String,
            val valores: String,
            val conductor: Boolean,
            val url: String,
-           val puntuacion: Float?
+           val puntuacion: Float?,
+           val rutas: ArrayList<String>?
 )
 
