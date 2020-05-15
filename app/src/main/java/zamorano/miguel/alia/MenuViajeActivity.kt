@@ -16,8 +16,14 @@ enum class ProviderType {
 }
 
 class MenuViajeActivity : AppCompatActivity() {
-    var database = FirebaseDatabase.getInstance().reference
-    lateinit var usuarioUID: String
+    // Referencia a usuario que inicio sesion
+    val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+    val idUsuario = currentFirebaseUser!!.uid
+
+    // Referencia a base de datos
+    var databaseReference = FirebaseDatabase.getInstance().reference
+
+    // Para saber si es conductor
     var esConductor: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,11 +57,9 @@ class MenuViajeActivity : AppCompatActivity() {
      * sesión iniciada es conductor o no.
      */
     fun obtenDatosUsuario() {
-        val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
-        usuarioUID = currentFirebaseUser!!.uid
-
-        database.child("users")
-            .child(usuarioUID)
+        databaseReference
+            .child("users")
+            .child(idUsuario)
             .addListenerForSingleValueEvent(object: ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     TODO("Not yet implemented")

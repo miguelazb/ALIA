@@ -19,6 +19,14 @@ import kotlinx.android.synthetic.main.activity_register.*
 
 
 class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+    // Referencia a la base de datos firebase
+    val databaseReference = FirebaseDatabase.getInstance().reference
+
+    // Referencia al usuario en firebase
+    val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+    val idUsuario = currentFirebaseUser!!.uid
+
+    // Valores extras
     lateinit var carrera: String
     lateinit var storageRef: StorageReference
     lateinit var downloadUri: Uri
@@ -109,14 +117,10 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
                 rutas = arrayListOf("")
             )
 
-            // Aquí se obtiene el UID del usuario que se registró en el AuthActivity
-            // Para así ligar sus datos a Firebase.
-            val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
-
             // Se guarda al usuario en la base de datos de Firebase
-            FirebaseDatabase.getInstance().reference
+            databaseReference
                 .child("users")
-                .child(currentFirebaseUser!!.uid)
+                .child(idUsuario)
                 .setValue(usuario)
 
             showMenu()

@@ -14,9 +14,14 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_mi_perfil.*
 
 class MiPerfilActivity : AppCompatActivity() {
-    var database = FirebaseDatabase.getInstance().reference
-    lateinit var usuarioUID: String
+    // Referencia a la sesión iniciada en firebase
+    val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+    val idUsuario = currentFirebaseUser!!.uid
 
+    // Referencia a base de datos Firebase
+    val databaseReference = FirebaseDatabase.getInstance().reference
+
+    // Adapter rutas vars
     var listaRutas = ArrayList<ListaRutasConductor>()
     lateinit var adaptador: RutasAdapter
 
@@ -50,39 +55,33 @@ class MiPerfilActivity : AppCompatActivity() {
      * la base de datos de Firebase.
      */
     fun obtenDatosUsuario() {
-        val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
-        usuarioUID = currentFirebaseUser!!.uid
+        databaseReference
+            .child("users")
+            .child(idUsuario)
+            .addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) { TODO("Not yet implemented") }
 
-        database.child("users")
-                .child(usuarioUID)
-                .addListenerForSingleValueEvent(object: ValueEventListener {
-                    override fun onCancelled(p0: DatabaseError) {
-                        TODO("Not yet implemented")
+                override fun onDataChange(p0: DataSnapshot) {
+                    var map = p0.value as Map<*, *>
+                    txtViewNombre.text = map["nombre"].toString()
+                    txtViewEdad.text = "${map["edad"].toString()} años"
+                    txtViewCarrera.text = map["carrera"].toString()
+                    txtViewValores.text = map["valores"].toString()
+                    ratingBarCalificacion.rating = map["puntuacion"].toString().toFloat()
+
+                    if(map["conductor"] == false) {
+                        verifiedUser.visibility = View.GONE
+                        btnAddRoutes.visibility = View.GONE
+                        clRutasFrecuentes.visibility = View.GONE
+                    } else {
+                        verifiedUser.visibility = View.VISIBLE
+                        btnAddRoutes.visibility = View.VISIBLE
+                        clRutasFrecuentes.visibility = View.VISIBLE
                     }
-
-                    override fun onDataChange(p0: DataSnapshot) {
-                        var map = p0.value as Map<*, *>
-                        txtViewNombre.text = map["nombre"].toString()
-                        txtViewEdad.text = "${map["edad"].toString()} años"
-                        txtViewCarrera.text = map["carrera"].toString()
-                        txtViewValores.text = map["valores"].toString()
-                        ratingBarCalificacion.rating = map["puntuacion"].toString().toFloat()
-
-                        if(map["conductor"] == false) {
-                            verifiedUser.visibility = View.GONE
-                            btnAddRoutes.visibility = View.GONE
-                            clRutasFrecuentes.visibility = View.GONE
-                        } else {
-                            verifiedUser.visibility = View.VISIBLE
-                            btnAddRoutes.visibility = View.VISIBLE
-                            clRutasFrecuentes.visibility = View.VISIBLE
-                        }
                         val uri: Uri = Uri.parse(map["url"].toString())
-
                         Picasso.get().load(uri).into(imgViewFoto);
                     }
-
-                })
+        })
     }
 
     /**
@@ -90,8 +89,21 @@ class MiPerfilActivity : AppCompatActivity() {
      * del listView
      */
     fun listaDePrueba() {
-        listaRutas.add(ListaRutasConductor("Ruta 5, Calle Zaragoza 611"))
-        listaRutas.add(ListaRutasConductor("Ruta 3, Calle Jálisco y Av. Las palmas"))
-        listaRutas.add(ListaRutasConductor("Ruta 7, Calle 5 de Febrero"))
+        databaseReference
+            .child("users")
+            .child(idUsuario)
+            .addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) { TODO("Not yet implemented") }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    var map = p0.value as Map<*, *>
+                    val rutasArray: ArrayList<String> = map["rutas"] as ArrayList<String>
+
+                    for (ruta in rutasArray) {
+                        listaRutas.add(ListaRutasConductor(ruta))
+                    }
+                }
+
+            })
     }
 }

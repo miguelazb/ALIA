@@ -16,10 +16,17 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_agregar_rutas.*
 
 class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
-    var database = FirebaseDatabase.getInstance().reference
-    lateinit var usuarioUID: String
+    // Referencia Usuario Firebase
+    val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+    val idUsuario = currentFirebaseUser!!.uid
+
+    // Rerefencia a base datos Firebase
+    var databaseReference = FirebaseDatabase.getInstance().reference
+
+    // Linea de camión seleccionada
     lateinit var lineaCamion: String
 
+    // Valores Usuario
     lateinit var nombre: String
     lateinit var edad: String
     lateinit var carrera: String
@@ -47,8 +54,7 @@ class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private fun saveOnDatabase() {
         if (textViewCalle.text.isNotEmpty()) {
             // Crea un solo string con la linea de camion y la calle donde se encuentra
-            val calle = textViewCalle.text.toString()
-            val fullCalle = "$lineaCamion, $calle"
+            val fullCalle = "$lineaCamion, ${textViewCalle.text}"
 
             // Si la posicion 0 de callesArray es vacio, lo elimina para ser
             // reemplazado por uno nuevo
@@ -71,19 +77,13 @@ class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 callesArray
             )
 
-            // Aquí se obtiene el UID del usuario que se registró en el AuthActivity
-            // Para así ligar sus datos a Firebase.
-            val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
-
             // Se guarda al usuario en la base de datos de Firebase
-            FirebaseDatabase.getInstance().reference
+            databaseReference
                 .child("users")
-                .child(currentFirebaseUser!!.uid)
+                .child(idUsuario)
                 .setValue(user)
-
             // Si todo sale bien
             showPerfil()
-
         } else {
             // Si existen errores
             showAlert()
@@ -97,12 +97,10 @@ class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
      * Además agrega al arreglo de callesArray todas las rutas del usuario.
      */
     fun obtenDatosUsuario() {
-        val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
-        usuarioUID = currentFirebaseUser!!.uid
-
         // Se posiciona en el nodo users de la base de datos
-        database.child("users")
-            .child(usuarioUID)
+        databaseReference
+            .child("users")
+            .child(idUsuario)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     TODO("Not yet implemented")
