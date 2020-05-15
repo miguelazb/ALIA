@@ -175,6 +175,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline4">
 
         <ImageView
+            android:id="@+id/btnMenuPrincipal"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/icon_corazon"

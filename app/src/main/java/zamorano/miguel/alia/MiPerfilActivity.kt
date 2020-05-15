@@ -25,6 +25,9 @@ class MiPerfilActivity : AppCompatActivity() {
     var listaRutas = ArrayList<ListaRutasConductor>()
     lateinit var adaptador: RutasAdapter
 
+    // Saber si es conductor
+    var esConductor: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mi_perfil)
@@ -39,13 +42,24 @@ class MiPerfilActivity : AppCompatActivity() {
 
         // Si se clickea el boton de bus menu
         btnAutoBusMenu.setOnClickListener {
-            val intent: Intent = Intent(this, BusStation::class.java)
-            startActivity(intent)
+            if(!esConductor) {
+                val intent: Intent = Intent(this, BusStation::class.java)
+                startActivity(intent)
+            } else {
+                val intent: Intent = Intent(this, AgregarRutas::class.java)
+                startActivity(intent)
+            }
         }
 
         // Si se clickea el boton de agregar rutas
         btnAddRoutes.setOnClickListener {
             val intent: Intent = Intent(this, AgregarRutas::class.java)
+            startActivity(intent)
+        }
+
+        // Si se clickea el boton del menu principal (corazon)
+        btnMenuPrincipal.setOnClickListener {
+            val intent: Intent = Intent(this, MenuViajeActivity::class.java)
             startActivity(intent)
         }
     }
@@ -68,8 +82,9 @@ class MiPerfilActivity : AppCompatActivity() {
                     txtViewCarrera.text = map["carrera"].toString()
                     txtViewValores.text = map["valores"].toString()
                     ratingBarCalificacion.rating = map["puntuacion"].toString().toFloat()
+                    esConductor = map["conductor"].toString().toBoolean()
 
-                    if(map["conductor"] == false) {
+                    if(!esConductor) {
                         verifiedUser.visibility = View.GONE
                         btnAddRoutes.visibility = View.GONE
                         clRutasFrecuentes.visibility = View.GONE

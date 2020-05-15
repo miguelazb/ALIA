@@ -36,8 +36,8 @@ class MenuViajeActivity : AppCompatActivity() {
         // Click al boton de menu Autobus
         btnMenuAutobus.setOnClickListener {
             if(esConductor == true) {
-                // val intent: Intent = Intent(this, MiPerfilActivity::class.java)
-                // startActivity(intent)
+                 val intent: Intent = Intent(this, AgregarRutas::class.java)
+                 startActivity(intent)
             } else {
                 val intent: Intent = Intent(this, BusStation::class.java)
                 startActivity(intent)
