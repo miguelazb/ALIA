@@ -41,9 +41,9 @@ class BusStation : AppCompatActivity() {
      * la funcionalidad de listView
      */
     fun listaDePrueba() {
-        listaRutas.add(ListaRutasConductor("Ruta 5, Calle Zaragoza 611"))
-        listaRutas.add(ListaRutasConductor("Ruta 3, Calle Jálisco y Av. Las palmas"))
-        listaRutas.add(ListaRutasConductor("Ruta 7, Calle 5 de Febrero"))
+//        listaRutas.add(ListaRutasConductor("Ruta 5, Calle Zaragoza 611"))
+//        listaRutas.add(ListaRutasConductor("Ruta 3, Calle Jálisco y Av. Las palmas"))
+//        listaRutas.add(ListaRutasConductor("Ruta 7, Calle 5 de Febrero"))
     }
 
     /**
