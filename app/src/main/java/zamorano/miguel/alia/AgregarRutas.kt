@@ -237,19 +237,7 @@ class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         }
     }
-//    @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-//    {
-//        switch(parent.getId())
-//        { //Run Code For Major Spinner
-//            case R . id . spinner_major :
-//            { // code for first spinner. Depending on spinner.getselecteditem assign adapter to second spinner
-//            }
-//            case R . id . second_spinner :
-//            { // code for second spinner
-//                //Use get item selected and get selected item position
-//            }
-//        }
-//    }
+
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
         TODO("Not yet implemented")

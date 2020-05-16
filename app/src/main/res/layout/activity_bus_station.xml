@@ -44,42 +44,85 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout4"
-        android:layout_width="330dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/rosa"
+    <!--  CANCELADO: FILTROS POR TEXTO  -->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/constraintLayout4"-->
+<!--        android:layout_width="330dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:background="@color/rosa"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textViewNombre">-->
+
+<!--        <EditText-->
+<!--            android:layout_width="310dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:background="@drawable/round_edit_text_busstation"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:text="@string/editText_busStation"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--    <ListView-->
+<!--        android:id="@+id/listaRutasFrecuentes"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:layout_marginBottom="24dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />-->
+
+    <Spinner
+        android:id="@+id/spinnerLineasPA"
+        android:layout_width="250dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:textColor="@color/gris_oscuro"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNombre">
-
-        <EditText
-            android:layout_width="310dp"
-            android:layout_height="30dp"
-            android:background="@drawable/round_edit_text_busstation"
-            android:paddingLeft="10dp"
-            android:text="@string/editText_busStation"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
 
 
-    <ListView
-        android:id="@+id/listaRutasFrecuentes"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+    <Spinner
+        android:id="@+id/spinnerColoniasPA"
+        android:layout_width="250dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:textColor="@color/gris_oscuro"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerLineasPA" />
+
+    <Button
+        android:id="@+id/btn_siguiente"
+        android:layout_width="168dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/round_ok_button"
+        android:text="Siguiente"
+        android:textAllCaps="false"
+        android:textColor="@color/rosa"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerColoniasPA" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
