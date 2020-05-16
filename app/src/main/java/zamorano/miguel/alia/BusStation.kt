@@ -20,6 +20,8 @@ class BusStation : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var camion: String
     lateinit var colonia: String
 
+    var conductoras = ArrayList<User>()
+
     var database = FirebaseDatabase.getInstance().reference
     lateinit var usuarioUID: String
 
@@ -31,6 +33,7 @@ class BusStation : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         setContentView(R.layout.activity_bus_station)
         // Obtiene el dato de usuario
         obtenDatosUsuario()
+
         // Carga la lista de prueba
         llenaSpinnerColonias()
         llenaSpinnerRutas()
@@ -50,6 +53,7 @@ class BusStation : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
     }
+
 
     fun validaDatos(): Boolean {
         if (camion.isEmpty()) {
@@ -97,6 +101,8 @@ class BusStation : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
             })
     }
+
+
 
 
     /**
