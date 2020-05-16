@@ -116,7 +116,7 @@ class MiPerfilActivity : AppCompatActivity() {
 
                     for (ruta in rutasArray) {
                         var idxSColon = ruta.indexOf(";")
-                        if(idxSColon != -1 ){
+                        if(idxSColon != -1 ) {
                             var camion: String = ruta.substring(0,idxSColon)
                             var colonia: String = ruta.substring(idxSColon + 1)
                             listaRutas.add(ListaRutasConductor(camion,colonia))
