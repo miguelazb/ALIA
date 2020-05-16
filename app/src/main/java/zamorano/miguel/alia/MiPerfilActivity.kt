@@ -34,7 +34,7 @@ class MiPerfilActivity : AppCompatActivity() {
         // Obtiene los datos del usuario
         obtenDatosUsuario()
         // Carga la lista de prueba
-        listaDePrueba()
+        listaRutas()
 
         // Adaptador de rutas
         adaptador = RutasAdapter(this, listaRutas)
@@ -100,10 +100,10 @@ class MiPerfilActivity : AppCompatActivity() {
     }
 
     /**
-     * listaDePrueba carga una lista de prueba para corroborar la funcionalidad
+     * listaRutas carga una lista de prueba para corroborar la funcionalidad
      * del listView
      */
-    fun listaDePrueba() {
+    fun listaRutas() {
         databaseReference
             .child("users")
             .child(idUsuario)
@@ -115,7 +115,10 @@ class MiPerfilActivity : AppCompatActivity() {
                     val rutasArray: ArrayList<String> = map["rutas"] as ArrayList<String>
 
                     for (ruta in rutasArray) {
-                        listaRutas.add(ListaRutasConductor(ruta))
+                        var idxSColon = ruta.indexOf(";")
+                        var camion: String = ruta.substring(0,idxSColon)
+                        var colonia: String = ruta.substring(idxSColon + 1)
+                        listaRutas.add(ListaRutasConductor(camion,colonia))
                     }
                 }
 

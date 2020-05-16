@@ -20,8 +20,8 @@ class RutasAdapter: BaseAdapter {
         var inflador = LayoutInflater.from(context)
         var vista = inflador.inflate(R.layout.lista_rutas_conductor, null)
         var ruta = rutas[position]
-
-        vista.textViewRuta.text = ruta.rutaConductor
+        var stringMuestra: String = "${ruta.camion}, Colonia ${ruta.colonia}"
+        vista.textViewRuta.text = stringMuestra
 
         return vista
     }

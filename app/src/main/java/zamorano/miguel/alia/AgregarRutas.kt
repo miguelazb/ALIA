@@ -26,6 +26,9 @@ class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     // Linea de camión seleccionada
     lateinit var lineaCamion: String
 
+    // colonia seleccionada
+    lateinit var colonia: String
+
     // Valores Usuario
     lateinit var nombre: String
     lateinit var edad: String
@@ -40,7 +43,8 @@ class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agregar_rutas)
         obtenDatosUsuario()
-        spinnerDeclarations()
+        llenaSpinnerColonias()
+        llenaSpinnerRutas()
 
         btnRegistrar.setOnClickListener {
             saveOnDatabase()
@@ -63,9 +67,13 @@ class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
      * que se encuentra registrando y lo guarda en Firebase.
      */
     private fun saveOnDatabase() {
-        if (textViewCalle.text.isNotEmpty()) {
+        if (lineaCamion.isEmpty()) {
+            showAlert("Seleccione una línea de camión primero.")
+        } else if (colonia.isEmpty()) {
+            showAlert("Seleccione una colonia primero.")
+        } else {
             // Crea un solo string con la linea de camion y la calle donde se encuentra
-            val fullCalle = "$lineaCamion, ${textViewCalle.text}"
+            val fullCalle = "$lineaCamion;${colonia}"
 
             // Si la posicion 0 de callesArray es vacio, lo elimina para ser
             // reemplazado por uno nuevo
@@ -89,17 +97,17 @@ class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             )
 
             // Se guarda al usuario en la base de datos de Firebase
-            databaseReference
-                .child("users")
-                .child(idUsuario)
-                .setValue(user)
-            // Si todo sale bien
-            showPerfil()
-        } else {
-            // Si existen errores
-            showAlert()
+            try {
+                databaseReference
+                    .child("users")
+                    .child(idUsuario)
+                    .setValue(user)
+                // Si todox sale bien
+                showPerfil()
+            } catch (e: Exception) {
+                showAlert("Ocurrió un error en la base de datos ${e.toString()}")
+            }
         }
-
     }
 
     /**
@@ -150,20 +158,41 @@ class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
      * Método ShowAlert construirá y mostrará un error en caso que existan
      * campos vacíos.
      */
-    private fun showAlert() {
+    private fun showAlert(msg: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
-        builder.setMessage("No se permiten campos vacíos.")
-        builder.setPositiveButton("Acepter", null)
+        builder.setMessage(msg)
+        builder.setPositiveButton("Aceptar", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
 
     /**
-     * El método SpinnerDeclarations crea un ArrayAdapter usando el arreglo de Strings
+     * El método llenaSpinnerColonias crea un ArrayAdapter usando el arreglo de Strings
      * en el drawable de Strings para crear el Spinner con las diferentes opciones.
      */
-    private fun spinnerDeclarations() {
+    private fun llenaSpinnerColonias() {
+        val spinner: Spinner = findViewById(R.id.spinnerColonias)
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.colonia_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = adapter
+        }
+        spinner.onItemSelectedListener = this
+    }
+
+    /**
+     * El método llenaSpinnerRutas crea un ArrayAdapter usando el arreglo de Strings
+     * en el drawable de Strings para crear el Spinner con las diferentes opciones.
+     */
+    private fun llenaSpinnerRutas() {
         val spinner: Spinner = findViewById(R.id.spinnerLineas)
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -189,12 +218,38 @@ class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
      * @param id id del spinner.
      */
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        lineaCamion = if (position != 0) {
-            parent?.getItemAtPosition(position).toString()
-        } else {
-            parent?.getItemAtPosition(1).toString()
+        when(parent?.id){
+            R.id.spinnerColonias -> {
+                if (position != 0) {
+                    colonia = parent?.getItemAtPosition(position).toString()
+                } else {
+                    colonia = ""
+                }
+            }
+            R.id.spinnerLineas -> {
+                if (position != 0) {
+                    lineaCamion = parent?.getItemAtPosition(position).toString()
+                } else {
+                    lineaCamion = ""
+                }
+
+            }
+
         }
     }
+//    @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+//    {
+//        switch(parent.getId())
+//        { //Run Code For Major Spinner
+//            case R . id . spinner_major :
+//            { // code for first spinner. Depending on spinner.getselecteditem assign adapter to second spinner
+//            }
+//            case R . id . second_spinner :
+//            { // code for second spinner
+//                //Use get item selected and get selected item position
+//            }
+//        }
+//    }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
         TODO("Not yet implemented")

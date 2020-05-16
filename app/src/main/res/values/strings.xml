@@ -51,5 +51,23 @@
         <item>Linea 13</item>
         <item>Linea 14</item>
         <item>Linea 15</item>
+        <item>Linea 15</item>
+    </string-array>
+    <string-array name="colonia_array">
+        <item>Colonia destino</item>
+        <item>México</item>
+        <item>Libertad</item>
+        <item>La Machi</item>
+        <item>Plan Oriente</item>
+        <item>Centro</item>
+        <item>Faustino Félix</item>
+        <item>Mira Valle</item>
+        <item>Valle Dorado</item>
+        <item>Villa Fontana</item>
+        <item>Aves del Castillo</item>
+        <item>Casa Blanca</item>
+        <item>Urbi Villa</item>
+        <item>Bella Vista</item>
+        <item>La Sochiloa</item>
     </string-array>
 </resources>
