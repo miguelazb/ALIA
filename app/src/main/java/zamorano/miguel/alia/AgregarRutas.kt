@@ -45,6 +45,17 @@ class AgregarRutas : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         btnRegistrar.setOnClickListener {
             saveOnDatabase()
         }
+
+        btnMenuPerfil.setOnClickListener {
+            val miPerfilActivity: Intent = Intent(this, MiPerfilActivity::class.java)
+            startActivity(miPerfilActivity)
+        }
+
+        btnMenuPrincipal.setOnClickListener {
+            val menuViajeIntent: Intent = Intent(this, MenuViajeActivity::class.java)
+            startActivity(menuViajeIntent)
+        }
+
     }
 
     /**
