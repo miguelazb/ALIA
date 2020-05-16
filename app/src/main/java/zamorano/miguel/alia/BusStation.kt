@@ -157,14 +157,14 @@ class BusStation : AppCompatActivity(), AdapterView.OnItemSelectedListener {
      */
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when (parent?.id) {
-            R.id.spinnerColonias -> {
+            R.id.spinnerColoniasPA -> {
                 if (position != 0) {
                     colonia = parent?.getItemAtPosition(position).toString()
                 } else {
                     colonia = ""
                 }
             }
-            R.id.spinnerLineas -> {
+            R.id.spinnerLineasPA -> {
                 if (position != 0) {
                     camion = parent?.getItemAtPosition(position).toString()
                 } else {

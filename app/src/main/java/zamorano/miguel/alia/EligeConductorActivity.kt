@@ -9,6 +9,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_bus_station.*
+import kotlinx.android.synthetic.main.activity_elige_conductor.*
+import kotlinx.android.synthetic.main.activity_register.*
 
 class EligeConductorActivity : AppCompatActivity() {
     // Referencia a la sesión iniciada en firebase
@@ -29,7 +31,7 @@ class EligeConductorActivity : AppCompatActivity() {
         val camion: String? = intent.getStringExtra("camion")
         val colonia: String? = intent.getStringExtra("colonia")
 
-        pruebaListaConductoras()
+
     }
 
     fun pruebaListaConductoras() {
@@ -37,6 +39,7 @@ class EligeConductorActivity : AppCompatActivity() {
         for(a in conductoras) {
             text = text.plus(a.nombre).plus("\n");
         }
+        textoPrueba.text = text
     }
 
     /**
@@ -72,20 +75,26 @@ class EligeConductorActivity : AppCompatActivity() {
                 override fun onCancelled(p0: DatabaseError) { TODO("Not yet implemented") }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    var map = p0.value as Map<*, *>
-
-                    val nombre: String = map["nombre"].toString()
-                    val edad: String = map["edad"].toString()
-                    val carrera: String = map["carrera"].toString()
-                    val valores: String = map["valores"].toString()
-                    val conductor: Boolean = map["conductor"].toString().toBoolean()
-                    val url: String = map["url"].toString()
-                    val puntuacion: Float? = map["puntuacion"].toString().toFloatOrNull()
-                    val rutas: ArrayList<String>? = map["rutas"] as ArrayList<String>
-                    var conductora: User = User(nombre, edad, carrera, valores, conductor, url, puntuacion, rutas)
-                    conductoras.add(conductora)
+                    val map = p0.value as Map<*, *>
+                    for(m in map) {
+                        val a = m.value as Map<*,*>
+                        val conductor: Boolean = a["conductor"].toString().toBoolean()
+                        if(conductor) {
+                            val nombre: String = a["nombre"].toString()
+                            val edad: String = a["edad"].toString()
+                            val carrera: String = a["carrera"].toString()
+                            val valores: String = a["valores"].toString()
+                            val url: String = a["url"].toString()
+                            val puntuacion: Float? = a["puntuacion"].toString().toFloatOrNull()
+                            val rutas: ArrayList<String>? = a["rutas"] as ArrayList<String>
+                            var conductora: User = User(nombre, edad, carrera, valores, conductor, url, puntuacion, rutas)
+                            conductoras.add(conductora)
+                        }
+                    }
+                    pruebaListaConductoras()
                 }
             })
+
     }
 
 
