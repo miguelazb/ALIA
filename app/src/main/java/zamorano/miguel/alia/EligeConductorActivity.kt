@@ -100,11 +100,11 @@ class EligeConductorActivity : AppCompatActivity() {
                         for(ruta in conductora.rutas!!) {
                             // formato camion;colonia
                             var datosRuta = ruta.split(";")
-                            var listaRutas = ArrayList<String>()
+                            var listaRutas: ArrayList<String> = arrayListOf<String>()
                             if(datosRuta.size == 2){
                                 if(camionElegido.equals(datosRuta[0], true)
                                     && coloniaElegida.equals(datosRuta[1], true)){
-                                    listaRutas.add(datosRuta[1])
+                                    listaRutas.add(datosRuta[0])
                                     conductorasOrdenadas.add(
                                         ListaConductorRuta(
                                         conductora.nombre,
@@ -123,7 +123,7 @@ class EligeConductorActivity : AppCompatActivity() {
                     // ahora si coincide la colonia
                     for(conductora in listaAux) {
                         // puede haber varias rutas que coincidan en colonia, se guardan en una lista
-                        var listaRutas = ArrayList<String>()
+                        var listaRutas: ArrayList<String> = arrayListOf<String>()
                         var coincideAlgunaRuta: Boolean = false
                         for(ruta in conductora.rutas!!) {
                             // formato camion;colonia
@@ -133,7 +133,7 @@ class EligeConductorActivity : AppCompatActivity() {
                                 // si al menos una colonia coincide, se establece en true
                                 coincideAlgunaRuta = true
                                 // y se añade a la lista de rutas
-                                listaRutas.add(datosRuta[1])
+                                listaRutas.add(datosRuta[0])
                             }
                         }
                         // después de recorrer todas las rutas, si se encontró alguna...
