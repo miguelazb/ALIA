@@ -116,7 +116,6 @@ class EligeConductorActivity : AppCompatActivity() {
                             // formato camion;colonia
                             var datosRuta = ruta.split(";")
                             if(datosRuta.size == 2
-                                && camionElegido.equals(datosRuta[0], true)
                                 && coloniaElegida.equals(datosRuta[1], true)){
                                 // si al menos una colonia coincide, se establece en true
                                 coincideAlgunaRuta = true
@@ -130,8 +129,15 @@ class EligeConductorActivity : AppCompatActivity() {
                             conductorasOrdenadas.put(conductora,listaRutas)
                         }
                     }
-
-                    textoPrueba.text = conductorasOrdenadas.toString()
+                    var salida: String = ""
+                    for((k,v) in conductorasOrdenadas) {
+                        salida = salida.plus("Persona: ").plus(k.nombre).plus("Rutas: ")
+                        for(ruta in v){
+                            salida = salida.plus(ruta).plus(", ")
+                        }
+                        salida = salida.plus("\n")
+                    }
+                    textoPrueba.text = salida
 
                 }
             })
