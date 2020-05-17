@@ -18,28 +18,22 @@ class EligeConductorActivity : AppCompatActivity() {
     val idUsuario = currentFirebaseUser!!.uid
     // Referencia a base de datos Firebase
     val databaseReference = FirebaseDatabase.getInstance().reference
-
+    var camionElegido: String? = null
+    var coloniaElegida: String? = null
     var conductoras = ArrayList<User>()
+    var conductorasOrdenadas = LinkedHashMap<User, ArrayList<String>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_elige_conductor)
+        camionElegido = intent.getStringExtra("camion")
+        coloniaElegida = intent.getStringExtra("colonia")
         // Obtiene el dato de usuario
         obtenDatosUsuario()
         // obtén lista de conductoras
         obtenListaConductoras()
-        val camion: String? = intent.getStringExtra("camion")
-        val colonia: String? = intent.getStringExtra("colonia")
 
 
-    }
-
-    fun pruebaListaConductoras() {
-        var text: String = ""
-        for(a in conductoras) {
-            text = text.plus(a.nombre).plus("\n");
-        }
-        textoPrueba.text = text
     }
 
     /**
@@ -91,7 +85,54 @@ class EligeConductorActivity : AppCompatActivity() {
                             conductoras.add(conductora)
                         }
                     }
-                    pruebaListaConductoras()
+
+                    var listaAux = ArrayList<User>()
+                    listaAux.addAll(conductoras)
+
+                    var rutas = null
+                    // se evalúa si coindide tanto la ruta como la colonia a la que se dirige
+                    for(conductora in conductoras) {
+                        for(ruta in conductora.rutas!!) {
+                            // formato camion;colonia
+                            var datosRuta = ruta.split(";")
+                            var listaRutas = ArrayList<String>()
+                            if(datosRuta.size == 2){
+                                if(camionElegido.equals(datosRuta[0], true)
+                                    && coloniaElegida.equals(datosRuta[1], true)){
+                                    listaRutas.add(ruta)
+                                    conductorasOrdenadas.put(conductora,listaRutas)
+                                    listaAux.remove(conductora)
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    // ahora si coincide la colonia
+                    for(conductora in listaAux) {
+                        // puede haber varias rutas que coincidan en colonia, se guardan en una lista
+                        var listaRutas = ArrayList<String>()
+                        var coincideAlgunaRuta: Boolean = false
+                        for(ruta in conductora.rutas!!) {
+                            // formato camion;colonia
+                            var datosRuta = ruta.split(";")
+                            if(datosRuta.size == 2
+                                && camionElegido.equals(datosRuta[0], true)
+                                && coloniaElegida.equals(datosRuta[1], true)){
+                                // si al menos una colonia coincide, se establece en true
+                                coincideAlgunaRuta = true
+                                // y se añade a la lista de rutas
+                                listaRutas.add(ruta)
+                            }
+                        }
+                        // después de recorrer todas las rutas, si se encontró alguna...
+                        if(coincideAlgunaRuta) {
+                            // se añade la conductora y la lista de rutas correspondiente
+                            conductorasOrdenadas.put(conductora,listaRutas)
+                        }
+                    }
+
+                    textoPrueba.text = conductorasOrdenadas.toString()
+
                 }
             })
 
