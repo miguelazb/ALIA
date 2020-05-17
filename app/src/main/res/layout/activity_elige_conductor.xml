@@ -49,29 +49,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-<!--    <ListView-->
-<!--        android:id="@+id/listaConductores"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="250dp"-->
-<!--        android:layout_marginTop="24dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
+    <ListView
+        android:id="@+id/listaConductores"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-<!--    <Button-->
-<!--        android:id="@+id/btn_confirmar"-->
-<!--        android:layout_width="250dp"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:background="@drawable/round_ok_button"-->
-<!--        android:text="Confirmar Viaje"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:textColor="@color/rosa"-->
-<!--        android:textSize="22sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/listaConductores" />-->
+    <Button
+        android:id="@+id/btn_confirmar"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/round_ok_button"
+        android:text="Confirmar Viaje"
+        android:textAllCaps="false"
+        android:textColor="@color/rosa"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listaConductores" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline12"

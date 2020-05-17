@@ -21,7 +21,11 @@ class EligeConductorActivity : AppCompatActivity() {
     var camionElegido: String? = null
     var coloniaElegida: String? = null
     var conductoras = ArrayList<User>()
-    var conductorasOrdenadas = LinkedHashMap<User, ArrayList<String>>()
+
+    lateinit var adaptador: ConductoresAdapter
+
+    //var conductorasOrdenadas = LinkedHashMap<User, ArrayList<String>>()
+    var conductorasOrdenadas = ArrayList<ListaConductorRuta>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,7 @@ class EligeConductorActivity : AppCompatActivity() {
         obtenDatosUsuario()
         // obtén lista de conductoras
         obtenListaConductoras()
+
 
 
     }
@@ -99,8 +104,16 @@ class EligeConductorActivity : AppCompatActivity() {
                             if(datosRuta.size == 2){
                                 if(camionElegido.equals(datosRuta[0], true)
                                     && coloniaElegida.equals(datosRuta[1], true)){
-                                    listaRutas.add(ruta)
-                                    conductorasOrdenadas.put(conductora,listaRutas)
+                                    listaRutas.add(datosRuta[1])
+                                    conductorasOrdenadas.add(
+                                        ListaConductorRuta(
+                                        conductora.nombre,
+                                        listaRutas,
+                                        coloniaElegida!!,
+                                        conductora.url
+                                    )
+                                    )
+                                    // conductorasOrdenadas.put(conductora,listaRutas)
                                     listaAux.remove(conductora)
                                     break
                                 }
@@ -120,24 +133,22 @@ class EligeConductorActivity : AppCompatActivity() {
                                 // si al menos una colonia coincide, se establece en true
                                 coincideAlgunaRuta = true
                                 // y se añade a la lista de rutas
-                                listaRutas.add(ruta)
+                                listaRutas.add(datosRuta[1])
                             }
                         }
                         // después de recorrer todas las rutas, si se encontró alguna...
                         if(coincideAlgunaRuta) {
                             // se añade la conductora y la lista de rutas correspondiente
-                            conductorasOrdenadas.put(conductora,listaRutas)
+                            conductorasOrdenadas.add(ListaConductorRuta(
+                                conductora.nombre,
+                                listaRutas,
+                                coloniaElegida!!,
+                                conductora.url
+                            ))
                         }
                     }
-                    var salida: String = ""
-                    for((k,v) in conductorasOrdenadas) {
-                        salida = salida.plus("Persona: ").plus(k.nombre).plus("Rutas: ")
-                        for(ruta in v){
-                            salida = salida.plus(ruta).plus(", ")
-                        }
-                        salida = salida.plus("\n")
-                    }
-                    textoPrueba.text = salida
+                    adaptador = ConductoresAdapter(this@EligeConductorActivity, conductorasOrdenadas)
+                    listaConductores.adapter = adaptador
 
                 }
             })
