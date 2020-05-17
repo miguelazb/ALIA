@@ -1,6 +1,6 @@
 package zamorano.miguel.alia
 
-class ListaConductorRuta (
+data class ListaConductorRuta (
     val nombreConductor: String,
     val ruta: ArrayList<String>,
     val colonia: String,

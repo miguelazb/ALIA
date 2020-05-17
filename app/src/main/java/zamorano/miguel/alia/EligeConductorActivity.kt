@@ -3,6 +3,8 @@ package zamorano.miguel.alia
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AdapterView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,11 +20,19 @@ class EligeConductorActivity : AppCompatActivity() {
     val idUsuario = currentFirebaseUser!!.uid
     // Referencia a base de datos Firebase
     val databaseReference = FirebaseDatabase.getInstance().reference
+    // Datos de conductor
     var camionElegido: String? = null
     var coloniaElegida: String? = null
     var conductoras = ArrayList<User>()
-
+    // extras
+    lateinit var item: ListaConductorRuta
+    // Adaptador
     lateinit var adaptador: ConductoresAdapter
+    //
+    lateinit var nombre: String
+    lateinit var colonia: String
+    lateinit var ruta: String
+    lateinit var foto: String
 
     //var conductorasOrdenadas = LinkedHashMap<User, ArrayList<String>>()
     var conductorasOrdenadas = ArrayList<ListaConductorRuta>()
@@ -37,7 +47,25 @@ class EligeConductorActivity : AppCompatActivity() {
         // obtén lista de conductoras
         obtenListaConductoras()
 
+        listaConductores.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            item = parent.getItemAtPosition(position) as ListaConductorRuta
+            nombre = item.nombreConductor
+            colonia = item.colonia
+            ruta = item.ruta.toString()
+            foto = item.url
+            Toast.makeText(this, "Seleccionaste ${nombre}", Toast.LENGTH_LONG).show()
+        }
 
+        btn_confirmar.setOnClickListener {
+            if(item.nombreConductor.isNotEmpty()) {
+                val resumenViaje: Intent = Intent(this, ViajeResume::class.java)
+                resumenViaje.putExtra("nombre", nombre)
+                resumenViaje.putExtra("colonia", colonia)
+                resumenViaje.putExtra("ruta", ruta)
+                resumenViaje.putExtra("foto", foto)
+                startActivity(resumenViaje)
+            }
+        }
 
     }
 

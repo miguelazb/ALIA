@@ -39,16 +39,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="horizontal">
-            <ImageView
-                android:layout_width="170dp"
-                android:layout_height="170dp"
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/fotoUsuario"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+
                 android:src="@drawable/foto_perfil_conductora"/>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/perfil_nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:textSize="26sp"
+                    android:text="Nombre Usuario"
+                    android:textColor="@color/azul"
+                    />
 
                 <RatingBar
                     android:layout_width="wrap_content"
@@ -59,46 +75,13 @@
                     android:scaleY="0.75"
                     android:max="5"/>
 
-                <TextView
-                    android:id="@+id/perfil_nombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:textSize="26sp"
-                    android:text="Carolina"
-                    android:textColor="@color/azul"
-                    />
-                <TextView
-                    android:id="@+id/perfil_edad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="22 años"
-                    android:textColor="@color/gris_oscuro"
-                    />
-                <TextView
-                    android:id="@+id/perfil_carrera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="Lic. Contaduría ITSON"
-                    android:textColor="@color/gris_oscuro"
-                    />
-                <TextView
-                    android:id="@+id/perfil_valores"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="Responsable, amigable"
-                    android:textColor="@color/gris_oscuro"
-                    />
-
             </LinearLayout>
 
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/enCamino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -122,9 +105,10 @@
                 android:layout_marginRight="10dp"
                 android:src="@drawable/icon_parada"/>
 
-            <Button
-                android:layout_width="300dp"
-                android:layout_height="40dp"
+            <TextView
+                android:id="@+id/textViewFullPath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/ruta1_busStation"
                 android:textSize="18sp"
                 android:textAlignment="textStart"
@@ -138,6 +122,7 @@
             android:layout_gravity="center"/>
 
         <Button
+            android:id="@+id/btnCancelar"
             android:layout_width="200dp"
             android:layout_height="35dp"
             android:layout_marginTop="40dp"

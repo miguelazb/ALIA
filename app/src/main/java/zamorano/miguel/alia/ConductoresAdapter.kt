@@ -24,13 +24,14 @@ class ConductoresAdapter: BaseAdapter {
         var conductor = conductores[position]
 
         Picasso.get().load(conductor.url.toUri()).into(vista.imagenConductor)
-        vista.nombreCondcutor.text = conductor.nombreConductor
+        vista.nombreConductor.text = conductor.nombreConductor
 
         var textoRutas: String = "Rutas: "
         textoRutas = textoRutas.plus(conductor.ruta[0])
         var i: Int = 1
         while (conductor.ruta.size > i) {
             textoRutas = textoRutas.plus(", ").plus(conductor.ruta[i])
+            i++
         }
         vista.rutaConductor.text = textoRutas
         vista.coloniaConductor.text = "Colonia: ${conductor.colonia}"

@@ -66,7 +66,7 @@ class MenuViajeActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    var map = p0.value as Map<*, *>
+                    val map = p0.value as Map<*, *>
                     esConductor = map["conductor"].toString().toBoolean()
                 }
 

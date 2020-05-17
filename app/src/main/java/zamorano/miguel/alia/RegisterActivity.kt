@@ -10,6 +10,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -21,7 +22,8 @@ import kotlinx.android.synthetic.main.activity_register.*
 class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     // Referencia a la base de datos firebase
     val databaseReference = FirebaseDatabase.getInstance().reference
-
+    // Referncia a firestore de firebase
+    val storageReference = FirebaseStorage.getInstance().reference
     // Referencia al usuario en firebase
     val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
     val idUsuario = currentFirebaseUser!!.uid
