@@ -1,46 +1,61 @@
 package zamorano.miguel.alia
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
+import android.util.Log
 import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.lista_mostrar_conductores.*
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     // Referencia a la base de datos firebase
     val databaseReference = FirebaseDatabase.getInstance().reference
     // Referncia a firestore de firebase
-    val storageReference = FirebaseStorage.getInstance().reference
+    val storage = FirebaseStorage.getInstance()
     // Referencia al usuario en firebase
     val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
     val idUsuario = currentFirebaseUser!!.uid
-
     // Valores extras
     lateinit var carrera: String
+    lateinit var photoUri: Uri
+    lateinit var urlPhoto: String
+    // Extras
     lateinit var storageRef: StorageReference
-    lateinit var downloadUri: Uri
+
 
     companion object {
-        private val PICK_IMAGE_CODE = 1000
+        val GALLERY = 0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        storageRef = FirebaseStorage.getInstance().getReference("image_upload")
+        storageRef = FirebaseStorage.getInstance().getReference("uploads")
 
         spinnerDeclarations()
 
@@ -54,6 +69,21 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
     }
 
+    fun uploadImage(photoUri: Uri){
+        var timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        var fileName: String = "IMAGE_${timestamp}.png"
+
+        var storageRef = FirebaseStorage.getInstance().reference.child("images").child(fileName)
+        storageRef.putFile(photoUri).addOnSuccessListener {
+//            storageRef.downloadUrl
+            storageRef.downloadUrl.addOnCompleteListener { task ->
+                urlPhoto = task.result.toString()
+                Log.d("Resultado", urlPhoto)
+            }
+            Toast.makeText(this, "Upload photo completed", Toast.LENGTH_LONG).show()
+        }
+    }
+
     /**
      * launchGallery abre la galeria de imagenes en la cual se podrá seleccionar una imagen
      * y se le asignará al usuario.
@@ -62,7 +92,7 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_CODE)
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY)
     }
 
     /**
@@ -72,22 +102,10 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
      */
     override fun onActivityResult(requestCode:Int, resultCode:Int, data:Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == PICK_IMAGE_CODE) {
-            val uploadTask = storageRef.putFile(data!!.data!!)
-            val task = uploadTask.continueWithTask {
-                task ->
-                if(!task.isSuccessful) {
-                    Toast.makeText(this, "Imágen no se subió", Toast.LENGTH_LONG).show()
-                }
-                storageRef.downloadUrl
-            }.addOnCompleteListener {
-                task ->
-                if(task.isSuccessful) {
-                    downloadUri = task.result!!
-                    Picasso.get().load(downloadUri).into(userImage);
-                    Toast.makeText(this, "Imágen se subió con éxito", Toast.LENGTH_LONG).show()
-                }
-            }
+        if(requestCode == GALLERY) {
+            photoUri = data?.data!!
+            userImage.setImageURI(photoUri)
+            uploadImage(photoUri)
         }
     }
 
@@ -114,7 +132,7 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
                 carrera,
                 valores.toString(),
                 esConductora,
-                downloadUri.toString(),
+                urlPhoto,
                 puntuacion = 0.0F,
                 rutas = arrayListOf("")
             )

@@ -3,6 +3,7 @@ package zamorano.miguel.alia
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -177,7 +178,11 @@ class EligeConductorActivity : AppCompatActivity() {
                     }
                     adaptador = ConductoresAdapter(this@EligeConductorActivity, conductorasOrdenadas)
                     listaConductores.adapter = adaptador
-
+                    if(conductorasOrdenadas.isEmpty()) {
+                        btn_confirmar.visibility = View.GONE
+                        listaConductores.visibility = View.GONE
+                        mensajeColonia.visibility = View.VISIBLE
+                    }
                 }
             })
 
